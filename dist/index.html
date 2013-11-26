@@ -1,0 +1,58 @@
+<!doctype html>    
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Josiah Time</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    <link rel="shortcut icon" href="app/favicon.ico">
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/bootstrap.css">
+     
+  </head>
+
+  <body>
+
+    <div class="content">
+
+      <h1>What time is it?</h1>
+      <p>I'm in <strong>Hong Kong</strong></p>
+
+      <p id="DateField"></p>
+
+      <p id="TimeField"></p>
+
+    </div>
+
+    <div class="footer">
+      <div class="FooterLeft">MagicJack: (617)874-2419</div> 
+      <div>Email: hatch.josiah@gmail.com</div>  
+      <div>Skype: hatch.josiah</div>
+      <div class="FooterRight">Made by Josiah Hatch</div>
+    </div>
+
+
+    <script src="bower_components/jquery/jquery.js"></script>
+    <script src="bower_components/momentjs/moment.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.4.0/moment.min.js"></script>
+    <script src="scripts/main.js"></script>
+    <script src="scripts/moment-timezone.js"></script>
+
+    <script>
+     
+        $( document ).ready(function() {
+          moment.fn.formatInZone = function(format, offset) {
+              return this.clone().utc().add('hours', offset).format(format);
+          };
+          var day = moment().formatInZone('dddd', 8);
+          var date = moment().formatInZone('MMM Do', 8);
+          var time = moment().formatInZone('HH:mm:ss A', 8);
+          $( "p#DateField").html( "<p>The date is<strong>  " + day + ", " + date + "</strong></p>" );
+          $( "p#TimeField").html( "<p>The time is<strong> " + time + "</strong></p>" );
+
+        });
+
+     
+    </script>
+
+  </body>
